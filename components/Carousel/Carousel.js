@@ -17,3 +17,74 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+function carousel() {
+
+  // create elements
+  const carousel = document.createElement('div');
+  const left = document.createElement('div');
+  const right = document.createElement('div');
+  const img1 = document.createElement('img');
+  const img2 = document.createElement('img');
+  const img3 = document.createElement('img');
+  const img4 = document.createElement('img');
+
+  // style elements
+
+  carousel.classList.add('carousel');
+  left.classList.add('left-button');
+  right.classList.add('right-button');
+
+  // add content to elements
+
+  left.textContent = ' < ';
+  right.textContent = ' > ';
+
+  img1.src = "./assets/carousel/mountains.jpeg";
+  img2.src = "./assets/carousel/computer.jpeg";
+  img3.src = "./assets/carousel/trees.jpeg";
+  img4.src = "./assets/carousel/turntable.jpeg";
+
+  // add elements to carousel
+
+  carousel.appendChild(left);
+  carousel.appendChild(img1);
+  carousel.appendChild(img2);
+  carousel.appendChild(img3);
+  carousel.appendChild(img4);
+  carousel.appendChild(right);
+
+  const images = carousel.querySelectorAll('img');
+  let currentIndex = 0;
+  let lastIndex = images.length - 1;
+
+  let initialImage = images[currentIndex];
+  initialImage.style.display = 'flex';
+
+  right.addEventListener('click', () => {
+    images[currentIndex].style.display = 'none';
+    if (currentIndex < lastIndex) {
+      currentIndex += 1;
+    } else {
+      currentIndex = 0;
+    }
+    images[currentIndex].style.display = 'flex';
+  })
+  
+  left.addEventListener('click', () => {
+    images[currentIndex].style.display = 'none';
+    if (currentIndex > 0) {
+        currentIndex -= 1;
+    } else {
+        currentIndex = lastIndex;
+    }
+    images[currentIndex].style.display = 'flex';
+})
+
+  return carousel;
+}
+
+const carouselContainer = document.querySelector('.carousel-container');
+
+carouselContainer.appendChild(carousel());
+
