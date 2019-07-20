@@ -10,7 +10,6 @@
 
 axios.get(`https://lambda-times-backend.herokuapp.com/topics`)
     .then(function(response) {
-        console.log(response);
         tabCreator(response.data.topics);
     })
     .catch(function(error) {
